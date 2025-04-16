@@ -1,0 +1,35 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="es">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=5.0" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+
+    <title>Eva Estévez</title>
+    <meta name="description" content="Sitio web oficial de Eva Estévez - Project Manager" />
+    <meta
+      name="keywords"
+      content="Project Management, Docencia, Ingeniería, Proyectos, Administración, Santo Domingo, República Dominicana"
+    />
+
+    <meta property="title" content="Eva Estévez" />
+    <meta property="description" content="Sitio web oficial de Eva Estévez - Project Manager" />
+    <meta property="type" content="website" />
+    <meta property="url" content="https://eva.covez.net" />
+    <meta property="image" content="{% static 'logo.png' %}" />
+
+    <link rel="icon" href="{% static 'favicon.ico' %}" type="image/x-icon" />
+    <link rel="stylesheet" href="{% static 'dist/style.css' %}" />
+
+    <!--TODO: add compatible favicon for all browsers-->
+  </head>
+  <body>
+    {% include 'header.html' %}
+
+    <main>{% block content %}{% endblock %}</main>
+
+    {% include 'footer.html' %}
+    <script src="{% static 'script.js' %}" defer></script>
+  </body>
+</html>
