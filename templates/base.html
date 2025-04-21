@@ -1,4 +1,4 @@
-{% load static %}
+{% load static tailwind_tags %}
 <!DOCTYPE html>
 <html lang="es">
   <head>
@@ -21,6 +21,7 @@
 
     <link rel="icon" href="{% static 'favicon.ico' %}" type="image/x-icon" />
     <link rel="stylesheet" href="{% static 'dist/style.css' %}" />
+    {% tailwind_css %}
 
     <!--TODO: add compatible favicon for all browsers-->
   </head>
