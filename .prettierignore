@@ -1,0 +1,4 @@
+templates/*.html
+templates/**/*.html
+blog/templates*.html
+blog/templates/**/*.html

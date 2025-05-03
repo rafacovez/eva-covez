@@ -1,3 +1,31 @@
-<footer>
-  <div>I'm the footer</div>
+{% load static %}
+<footer class="bg-background text-white text-sm p-4 md:p-8">
+  <div class="space-y-4 md:space-y-0 md:flex md:items-start md:justify-between md:max-w-screen-md md:mx-auto">
+    
+    {% include 'nav.html' with nav_classes='hidden md:block md:order-1' %}
+
+    {% include 'newsletter.html' with newsletter_classes='text-white md:p-0 md:order-3' %}
+
+    <div class="flex flex-col items-center gap-2 text-xs md:order-2 md:items-center md:text-center md:justify-center md:flex-1">
+      <p>
+        {% if current_year > 2025 %}
+          &copy; 2025–{{ current_year }} Eva Estévez. Todos los derechos reservados.
+        {% else %}
+          &copy; {{ current_year }} Eva Estévez. Todos los derechos reservados.
+        {% endif %}
+      </p>
+      <div class="flex gap-4 justify-center">
+        <a href="https://x.com" class="hidden">
+          <img src="{% static 'src/icons/x-logo.svg' %}" alt="X" class="size-4"/>
+        </a>
+        <a href="https://linkedin.com/in/eva-estevez/">
+          <img src="{% static 'src/icons/linkedin-logo.svg' %}" alt="LinkedIn" class="size-4"/>
+        </a>
+      </div>
+      <a href="{{ privacy_policy_url }}" class="hover:underline">Políticas de privacidad</a>
+      <a href="{{ terms_of_service_url }}" class="hover:underline">Términos del servicio</a>
+    </div>
+
+  </div>
 </footer>
+
