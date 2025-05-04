@@ -1,10 +1,10 @@
 {% load static %}
-<footer class="bg-background text-white text-sm p-4 md:p-8">
+<footer class="bg-deep text-muted text-sm p-4 md:p-8">
   <div class="space-y-4 md:space-y-0 md:flex md:items-start md:justify-between md:max-w-screen-md md:mx-auto">
     
-    {% include 'nav.html' with nav_classes='hidden md:block md:order-1' %}
+    {% include 'components/nav.html' with nav_classes='hidden md:block md:order-1' %}
 
-    {% include 'newsletter.html' with newsletter_classes='text-white md:p-0 md:order-3' %}
+    {% include 'components/newsletter.html' with newsletter_classes='text-white md:p-0 md:order-3' %}
 
     <div class="flex flex-col items-center gap-2 text-xs md:order-2 md:items-center md:text-center md:justify-center md:flex-1">
       <p>
@@ -24,8 +24,8 @@
       </div>
       <a href="{{ privacy_policy_url }}" class="hover:underline">Políticas de privacidad</a>
       <a href="{{ terms_of_service_url }}" class="hover:underline">Términos del servicio</a>
+      <a href="https://github.com/rafacovez" class="hover:underline font-bold mt-2">Built with ❤️ by Covez</a>
     </div>
-
   </div>
 </footer>
 

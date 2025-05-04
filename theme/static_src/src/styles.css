@@ -9,3 +9,42 @@
   --color-accent: #a0947e;
   --color-deep: #13140f;
 }
+
+.container {
+  @apply h-full mx-auto p-8;
+}
+
+.landing-background {
+  position: relative;
+  background-image: url('/static/images/frente-camara.jpeg');
+  background-size: cover;
+  background-position: center;
+  height: 80vh;
+  overflow: hidden;
+}
+
+.overlay {
+  position: absolute;
+  inset: 0;
+  background-color: rgba(0, 0, 0, 0.4);
+}
+
+.content {
+  position: relative;
+  z-index: 1;
+}
+
+.divider {
+  display: block;
+  height: 1px;
+  width: 100%;
+  background-color: var(--color-primary);
+  margin: 2rem 0;
+}
+
+@media (min-width: 768px) {
+  .landing-background {
+    background-image: url('/static/images/parada-laptop.jpeg');
+    background-position: left 25% top 30%;
+  }
+}

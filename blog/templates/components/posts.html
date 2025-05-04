@@ -1,0 +1,35 @@
+{% load static %}
+<div class="bg-primary text-white">
+    <div class="container">
+        <h3 class="text-xl font-bold">Publicaciones</h3>
+        {% if request.resolver_match.url_name != 'blog' %}
+            <a class="text-xs text-muted underline" href="{% url 'blog' %}">Ver todas las publicaciones</a>
+        {% endif %}
+        <div class="mt-8 space-y-8 md:flex md:justify-around">
+            <div class="h-78 border-1 border-accent rounded-3xl shadow-2xl overflow-hidden max-w-sm">
+                <img class="object-cover object-center h-1/2 w-full" src="{% static 'images/frente-camara.jpeg' %}" alt="">
+                <div class="p-4">
+                    <a href="{% url 'post' %}" class="block font-bold underline cursor-pointer">Lorem ipsum dolor sit.</a>
+                    <span class="text-muted text-xs">14 de junio del 2025</span>
+                    <p class="mt-2 line-clamp-3">Lorem ipsum dolor sit amet consectetur adipisicing elit. Reprehenderit fuga, eaque delectus porro impedit deserunt dolorum perferendis amet id ex tempora quae blanditiis enim expedita corporis libero rem alias? Itaque!</p>
+                </div>
+            </div>
+            <div class="h-78 border-1 border-accent rounded-3xl shadow-2xl overflow-hidden max-w-sm">
+                <img class="object-cover object-center h-1/2 w-full" src="{% static 'images/parada-laptop.jpeg' %}" alt="">
+                <div class="p-4">
+                    <a href="{% url 'post' %}" class="block font-bold underline cursor-pointer">Lorem ipsum dolor sit.</a>
+                    <span class="text-muted text-xs">14 de junio del 2025</span>
+                    <p class="mt-2 line-clamp-3">Lorem ipsum dolor sit amet consectetur adipisicing elit. Reprehenderit fuga, eaque delectus porro impedit deserunt dolorum perferendis amet id ex tempora quae blanditiis enim expedita corporis libero rem alias? Itaque!</p>
+                </div>
+            </div>
+            <div class="h-78 border-1 border-accent rounded-3xl shadow-2xl overflow-hidden max-w-sm">
+                <img class="object-cover object-center h-1/2 w-full" src="{% static 'images/sentada-laptop.jpeg' %}" alt="">
+                <div class="p-4">
+                    <a href="{% url 'post' %}" class="block font-bold underline cursor-pointer">Lorem ipsum dolor sit.</a>
+                    <span class="text-muted text-xs">14 de junio del 2025</span>
+                    <p class="mt-2 line-clamp-3">Lorem ipsum dolor sit amet consectetur adipisicing elit. Reprehenderit fuga, eaque delectus porro impedit deserunt dolorum perferendis amet id ex tempora quae blanditiis enim expedita corporis libero rem alias? Itaque!</p>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
