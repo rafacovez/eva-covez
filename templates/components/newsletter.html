@@ -1,0 +1,26 @@
+<div class="p-4 max-w-sm {{ newsletter_classes }}">
+  <h5 class="text-xl font-bold mb-4">Subscríbete</h5>
+  <form method="POST" class="space-y-4">
+    <div>
+      <label for="name" class="block text-sm font-medium">Nombre</label>
+      <input
+        type="text"
+        name="name"
+        id="name"
+        required
+        class="mt-1 block w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm focus:ring-accent focus:border-accent sm:text-sm"
+      />
+    </div>
+    <div>
+      <label for="email" class="block text-sm font-medium">Correo electrónico</label>
+      <input
+        type="email"
+        name="email"
+        id="email"
+        required
+        class="mt-1 block w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm focus:ring-accent focus:border-accent sm:text-sm"
+      />
+    </div>
+    {% include 'components/primary-button.html' with button_text='Subscribir' button_classes='w-full' %}
+  </form>
+</div>

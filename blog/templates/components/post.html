@@ -1,0 +1,29 @@
+{% load static %}
+<div class="bg-background text-white">
+    <article class="container space-y-8">
+        <h1 class="text-5xl">Lorem ipsum dolor sit.</h1>
+        <div class="flex gap-4">
+            <img class="object-cover object-center size-16 shrink-0 rounded-full" src="{% static 'images/sentada-laptop.jpeg' %}" alt="">
+            <div class="text-xs flex flex-col">
+                <span class="font-bold">Eva Estévez</span>
+                <span>Ingeniera Electrónica y de Comunicaciones | Especialista en Gestión de Proyectos</span>
+                <time class="text-muted">12 de junio del 2024</time>
+            </div>
+        </div>
+        <img class="h-64 md:h-96 w-screen max-w-none -mx-8 md:w-full md:-mx-0 md:rounded object-cover object-center" src="{% static 'images/frente-camara.jpeg' %}" alt="">
+        <span class="divider"></span>
+        <div class="text-justify space-y-8">
+            <p>
+                Lorem ipsum dolor sit amet consectetur adipisicing elit. Voluptatibus suscipit reprehenderit expedita at sed nulla doloribus rem, sapiente laudantium velit aliquam earum nihil minima, tenetur omnis ipsum dolor, rerum praesentium.
+            </p>
+            <p>
+                Lorem ipsum dolor sit amet consectetur adipisicing elit. Voluptatibus suscipit reprehenderit expedita at sed nulla doloribus rem, sapiente laudantium velit aliquam earum nihil minima, tenetur omnis ipsum dolor, rerum praesentium.
+            </p>
+            <p>
+                Lorem ipsum dolor sit amet consectetur adipisicing elit. Voluptatibus suscipit reprehenderit expedita at sed nulla doloribus rem, sapiente laudantium velit aliquam earum nihil minima, tenetur omnis ipsum dolor, rerum praesentium.
+            </p>
+        </div>
+        <span class="divider"></span>
+        {% include 'components/share.html' %}
+    </article>
+</div>

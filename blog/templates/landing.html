@@ -1,0 +1,18 @@
+{% extends 'base.html' %}
+{% block content %}
+<div>
+    <div class="landing-background">
+        <div class="overlay"></div>
+    <div class="container">
+        <div class="content h-full flex flex-col justify-center items-center md:items-start max-w-lg text-center md:text-start px-4 text-white gap-4">
+            <h1 class="text-3xl md:text-5xl">
+                Ingeniera Electrónica y de Comunicaciones | Especialista en Gestión de Proyectos
+            </h1>
+            {% include 'components/primary-button.html' with button_text='Contactar' button_classes='md:text-xl' %}
+        </div>
+    </div>
+    </div>
+    {% include 'components/about.html' %}
+    {% include 'components/posts.html' %}
+</div>
+{% endblock %}
