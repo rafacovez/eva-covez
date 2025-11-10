@@ -11,22 +11,22 @@ https://docs.djangoproject.com/en/5.2/ref/settings/
 """
 
 from pathlib import Path
+import os
 
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
 BASE_DIR = Path(__file__).resolve().parent.parent
 
+DEBUG = os.getenv("DJANGO_DEBUG") == "True"
+SECRET_KEY = os.getenv("DJANGO_SECRET_KEY")
+ALLOWED_HOSTS = os.getenv("DJANGO_ALLOWED_HOSTS", "").split(",")
 
-# Quick-start development settings - unsuitable for production
-# See https://docs.djangoproject.com/en/5.2/howto/deployment/checklist/
+# CSRF trusted origins from env
+CSRF_TRUSTED_ORIGINS = os.getenv("DJANGO_CSRF_TRUSTED_ORIGINS", "").split(",")
 
-# SECURITY WARNING: keep the secret key used in production secret!
-SECRET_KEY = "django-insecure-8wm5xrwu#sqg9kuh9zr$c9e5)_zjr_lr^#d3jg4_%d@zijuqug"
-
-# SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = True
-
-ALLOWED_HOSTS = []
-
+# Security flags from env
+SECURE_SSL_REDIRECT = os.getenv("DJANGO_SECURE_SSL_REDIRECT") == "True"
+SESSION_COOKIE_SECURE = os.getenv("DJANGO_SESSION_COOKIE_SECURE") == "True"
+CSRF_COOKIE_SECURE = os.getenv("DJANGO_CSRF_COOKIE_SECURE") == "True"
 
 # Application definition
 
@@ -37,24 +37,34 @@ INSTALLED_APPS = [
     "django.contrib.sessions",
     "django.contrib.messages",
     "django.contrib.staticfiles",
-    "tailwind",
     "theme",
-    "django_browser_reload",
     "blog",
+    "core",
 ]
 
 TAILWIND_APP_NAME = "theme"
 
 MIDDLEWARE = [
     "django.middleware.security.SecurityMiddleware",
+    "whitenoise.middleware.WhiteNoiseMiddleware",
     "django.contrib.sessions.middleware.SessionMiddleware",
     "django.middleware.common.CommonMiddleware",
     "django.middleware.csrf.CsrfViewMiddleware",
     "django.contrib.auth.middleware.AuthenticationMiddleware",
     "django.contrib.messages.middleware.MessageMiddleware",
     "django.middleware.clickjacking.XFrameOptionsMiddleware",
-    "django_browser_reload.middleware.BrowserReloadMiddleware",
 ]
+
+if DEBUG:
+    INSTALLED_APPS += [
+        "tailwind",
+        "django_browser_reload",
+    ]
+
+    MIDDLEWARE += [
+        "django_browser_reload.middleware.BrowserReloadMiddleware",
+    ]
+
 
 ROOT_URLCONF = "eva_covez.urls"
 
@@ -122,7 +132,7 @@ USE_TZ = True
 # Static files (CSS, JavaScript, Images)
 # https://docs.djangoproject.com/en/5.2/howto/static-files/
 
-STATIC_URL = "static/"
+STATIC_URL = "/static/"
 STATICFILES_DIRS = [
     BASE_DIR / "static",
 ]
@@ -131,3 +141,19 @@ STATICFILES_DIRS = [
 # https://docs.djangoproject.com/en/5.2/ref/settings/#default-auto-field
 
 DEFAULT_AUTO_FIELD = "django.db.models.BigAutoField"
+
+MEDIA_URL = "/media/"
+
+# Static / media
+STATIC_ROOT = os.getenv("DJANGO_STATIC_ROOT", "staticfiles")
+MEDIA_ROOT = os.getenv("DJANGO_MEDIA_ROOT", "media")
+
+STORAGES = {
+    "default": {
+        "BACKEND": "django.core.files.storage.FileSystemStorage",
+        "OPTIONS": {"location": MEDIA_ROOT},
+    },
+    "staticfiles": {
+        "BACKEND": "django.contrib.staticfiles.storage.StaticFilesStorage",
+    },
+}

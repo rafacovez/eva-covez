@@ -11,7 +11,7 @@
 }
 
 .container {
-  @apply h-full mx-auto p-8;
+  @apply h-full max-w-5xl mx-auto p-8 xl:px-0;
 }
 
 .landing-background {
@@ -26,7 +26,7 @@
 .overlay {
   position: absolute;
   inset: 0;
-  background-color: rgba(0, 0, 0, 0.4);
+  background: linear-gradient(180deg, rgba(0, 0, 0, 0.2) 0%, rgba(0, 0, 0, 0.8) 100%);
 }
 
 .content {
@@ -39,7 +39,7 @@
   height: 1px;
   width: 100%;
   background-color: var(--color-primary);
-  margin: 2rem 0;
+  margin: 4rem 0;
 }
 
 @media (min-width: 768px) {

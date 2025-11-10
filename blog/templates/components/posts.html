@@ -1,35 +1,58 @@
 {% load static %}
-<div class="bg-primary text-white">
-    <div class="container">
-        <h3 class="text-xl font-bold">Publicaciones</h3>
-        {% if request.resolver_match.url_name != 'blog' %}
-            <a class="text-xs text-muted underline" href="{% url 'blog' %}">Ver todas las publicaciones</a>
-        {% endif %}
-        <div class="mt-8 space-y-8 md:flex md:justify-around">
-            <div class="h-78 border-1 border-accent rounded-3xl shadow-2xl overflow-hidden max-w-sm">
-                <img class="object-cover object-center h-1/2 w-full" src="{% static 'images/frente-camara.jpeg' %}" alt="">
-                <div class="p-4">
-                    <a href="{% url 'post' %}" class="block font-bold underline cursor-pointer">Lorem ipsum dolor sit.</a>
-                    <span class="text-muted text-xs">14 de junio del 2025</span>
-                    <p class="mt-2 line-clamp-3">Lorem ipsum dolor sit amet consectetur adipisicing elit. Reprehenderit fuga, eaque delectus porro impedit deserunt dolorum perferendis amet id ex tempora quae blanditiis enim expedita corporis libero rem alias? Itaque!</p>
-                </div>
+<div class="container">
+        <div class="flex flex-col space-y-8">
+            <div>
+                <h3 class="text-xl font-bold">Publicaciones</h3>
+                {% if request.resolver_match.url_name != 'blog' %}
+                    <a class="text-xs text-muted underline" href="{% url 'blog' %}">Ver todas las publicaciones</a>
+                {% endif %}
             </div>
-            <div class="h-78 border-1 border-accent rounded-3xl shadow-2xl overflow-hidden max-w-sm">
-                <img class="object-cover object-center h-1/2 w-full" src="{% static 'images/parada-laptop.jpeg' %}" alt="">
-                <div class="p-4">
-                    <a href="{% url 'post' %}" class="block font-bold underline cursor-pointer">Lorem ipsum dolor sit.</a>
-                    <span class="text-muted text-xs">14 de junio del 2025</span>
-                    <p class="mt-2 line-clamp-3">Lorem ipsum dolor sit amet consectetur adipisicing elit. Reprehenderit fuga, eaque delectus porro impedit deserunt dolorum perferendis amet id ex tempora quae blanditiis enim expedita corporis libero rem alias? Itaque!</p>
-                </div>
-            </div>
-            <div class="h-78 border-1 border-accent rounded-3xl shadow-2xl overflow-hidden max-w-sm">
-                <img class="object-cover object-center h-1/2 w-full" src="{% static 'images/sentada-laptop.jpeg' %}" alt="">
-                <div class="p-4">
-                    <a href="{% url 'post' %}" class="block font-bold underline cursor-pointer">Lorem ipsum dolor sit.</a>
-                    <span class="text-muted text-xs">14 de junio del 2025</span>
-                    <p class="mt-2 line-clamp-3">Lorem ipsum dolor sit amet consectetur adipisicing elit. Reprehenderit fuga, eaque delectus porro impedit deserunt dolorum perferendis amet id ex tempora quae blanditiis enim expedita corporis libero rem alias? Itaque!</p>
-                </div>
-            </div>
+            {% for post in posts %}
+                <a href="{% url 'post' post.slug %}" class="block bg-primary text-white h-78 border-1 border-accent rounded-3xl shadow-xl overflow-hidden max-w-sm transition-all duration-200 hover:-translate-y-1 hover:shadow-2xl sm:max-w-full sm:flex">
+                    <div class="h-1/2 w-full sm:h-full sm:w-1/2">
+                        {% if post.cover_image %}
+                            <img class="object-cover object-center h-full w-full" src="{{ post.cover_image.url }}" alt="{{ post.title }}">
+                        {% else %}
+                            <div class="bg-background flex justify-center items-center h-full w-full">
+                                {% include 'icons/photo.html' with photo_classes='size-16 text-accent' %}
+                            </div>
+                        {% endif %}
+                    </div>
+                    <div class="p-4 sm:p-8">
+                        <h3 class="block font-bold sm:text-3xl">{{ post.title }}</h3>
+                        <span class="text-muted text-xs">{{ post.published_at|date:"j \d\e F \d\e\l Y" }}</span>
+                        <p class="mt-2 line-clamp-3">{{ post.excerpt|default:post.content }}</p>
+                    </div>
+                </a>
+                {% if request.resolver_match.url_name == 'blog' %}
+                    <div class="flex justify-center space-x-2">
+                        {% if posts.has_previous %}
+                            <a href="?page={{ posts.previous_page_number }}" class="p-2 border border-primary rounded">
+                                {% include 'icons/chevron-left.html' with chevron_left_classes='size-6' %}
+                            </a>
+                        {% endif %}
+                        
+                        {% with start=posts.number|add:"-1" end=posts.number|add:"1" %}
+                            {% for num in posts.paginator.page_range %}
+                                {% if num >= start and num <= end %}
+                                    {% if posts.number == num %}
+                                        <span class="px-4 py-2 border border-primary rounded bg-accent">{{ num }}</span>
+                                    {% else %}
+                                        <a href="?page={{ num }}" class="px-4 py-2 border border-primary rounded">{{ num }}</a>
+                                    {% endif %}
+                                {% endif %}
+                            {% endfor %}
+                        {% endwith %}
+
+                        {% if posts.has_next %}
+                            <a href="?page={{ posts.next_page_number }}" class="p-2 border border-primary rounded">
+                                {% include 'icons/chevron-right.html' with chevron_right_classes='size-6' %}
+                            </a>
+                        {% endif %}
+                    </div>
+                {% endif %}
+            {% empty %}
+                <p>No hay publicaciones disponibles.</p>
+            {% endfor %}
         </div>
     </div>
-</div>

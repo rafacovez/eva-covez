@@ -1,6 +1,6 @@
 <header class="bg-deep text-white py-2 px-4 md:px-8">
   <div class="max-w-screen-lg mx-auto grid grid-cols-2 items-center md:flex md:justify-between">
-    <a class="text-2xl font-bold" href="https://eva.covez.net">Eva Estévez</a>
+    <a class="text-2xl font-bold" href="{% url 'landing' %}">Eva Estévez</a>
     {% include 'icons/bars.html' with bars_classes='size-6 justify-self-end md:hidden' bars_id='navButton' %}
     {% include 'components/nav.html' with nav_classes='hidden col-span-2 py-4 md:block' nav_list_classes='md:flex-row md:gap-8' %}
   </div>
