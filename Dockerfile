@@ -14,18 +14,10 @@ RUN apt-get update && apt-get install -y --no-install-recommends \
     && rm -rf /var/lib/apt/lists/*
 
 # Copy requirements
-COPY requirements.txt requirements-dev.txt ./
-
-# Build argument to optionally install dev dependencies
-ARG INSTALL_DEV=false
+COPY requirements.txt ./
 
 # Install base requirements
 RUN pip install --no-cache-dir -r requirements.txt
-
-# Conditionally install dev requirements
-RUN if [ "$INSTALL_DEV" = "true" ]; then \
-        pip install --no-cache-dir -r requirements-dev.txt; \
-    fi
 
 # Copy project code
 COPY . .

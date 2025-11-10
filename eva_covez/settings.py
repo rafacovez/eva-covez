@@ -26,17 +26,13 @@ INSTALLED_APPS = [
     "django.contrib.messages",
     "django.contrib.staticfiles",
     "theme",
+    "tailwind",
+    "django_browser_reload",
     "blog",
     "core",
 ]
 
-# Only use Tailwind in development mode
-if DEBUG:
-    INSTALLED_APPS += [
-        "tailwind",
-        "django_browser_reload",
-    ]
-    TAILWIND_APP_NAME = "theme"
+TAILWIND_APP_NAME = "theme"
 
 MIDDLEWARE = [
     "django.middleware.security.SecurityMiddleware",
@@ -47,12 +43,8 @@ MIDDLEWARE = [
     "django.contrib.auth.middleware.AuthenticationMiddleware",
     "django.contrib.messages.middleware.MessageMiddleware",
     "django.middleware.clickjacking.XFrameOptionsMiddleware",
+    "django_browser_reload.middleware.BrowserReloadMiddleware",
 ]
-
-if DEBUG:
-    MIDDLEWARE += [
-        "django_browser_reload.middleware.BrowserReloadMiddleware",
-    ]
 
 ROOT_URLCONF = "eva_covez.urls"
 

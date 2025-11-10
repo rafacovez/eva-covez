@@ -12,14 +12,8 @@ urlpatterns = [
     path("contact/", views.contact, name="contact"),
     path("privacy/", views.privacy, name="privacy"),
     path("terms/", views.terms, name="terms"),
+    path("__reload__/", include("django_browser_reload.urls")),
 ]
 
-# Include django_browser_reload only in development
 if settings.DEBUG:
-    import django_browser_reload
-
-    urlpatterns += [
-        path("__reload__/", include("django_browser_reload.urls")),
-    ]
-    # Serve media files in development
     urlpatterns += static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)
