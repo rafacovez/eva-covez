@@ -13,16 +13,14 @@ RUN apt-get update && apt-get install -y --no-install-recommends \
     libjpeg62-turbo zlib1g \
     && rm -rf /var/lib/apt/lists/*
 
-# Copy requirements
+# Copy requirements and install
 COPY requirements.txt ./
-
-# Install base requirements
 RUN pip install --no-cache-dir -r requirements.txt
 
 # Copy project code
 COPY . .
 
-# Entrypoint
+# Entrypoint setup
 COPY entrypoint.sh /entrypoint.sh
 RUN chmod +x /entrypoint.sh
 

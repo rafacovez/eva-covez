@@ -1,5 +1,4 @@
 services:
-  # Production service
   web:
     build: .
     container_name: eva_web
@@ -31,17 +30,11 @@ services:
     profiles:
       - prod
 
-  # Development service
   web-dev:
-    build:
-      context: .
-      args:
-        INSTALL_DEV: 'true' # enables dev dependencies
+    build: .
     container_name: eva_web_dev
     command: python manage.py runserver 0.0.0.0:8000
     volumes:
-      - ./static:/app/staticfiles
-      - ./media:/app/media
       - .:/app
     env_file:
       - .env.dev

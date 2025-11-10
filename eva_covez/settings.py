@@ -17,7 +17,6 @@ SESSION_COOKIE_SECURE = os.getenv("DJANGO_SESSION_COOKIE_SECURE") == "True"
 CSRF_COOKIE_SECURE = os.getenv("DJANGO_CSRF_COOKIE_SECURE") == "True"
 SECURE_PROXY_SSL_HEADER = ("HTTP_X_FORWARDED_PROTO", "https")
 
-# Application definition
 INSTALLED_APPS = [
     "django.contrib.admin",
     "django.contrib.auth",
@@ -27,10 +26,12 @@ INSTALLED_APPS = [
     "django.contrib.staticfiles",
     "theme",
     "tailwind",
-    "django_browser_reload",
     "blog",
     "core",
 ]
+
+if DEBUG:
+    INSTALLED_APPS.append("django_browser_reload")
 
 TAILWIND_APP_NAME = "theme"
 
@@ -43,8 +44,10 @@ MIDDLEWARE = [
     "django.contrib.auth.middleware.AuthenticationMiddleware",
     "django.contrib.messages.middleware.MessageMiddleware",
     "django.middleware.clickjacking.XFrameOptionsMiddleware",
-    "django_browser_reload.middleware.BrowserReloadMiddleware",
 ]
+
+if DEBUG:
+    MIDDLEWARE.append("django_browser_reload.middleware.BrowserReloadMiddleware")
 
 ROOT_URLCONF = "eva_covez.urls"
 
