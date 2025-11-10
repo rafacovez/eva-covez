@@ -25,5 +25,3 @@ six==1.17.0
 urllib3==2.4.0
 types-python-dateutil==2.9.0.20241206
 Pygments==2.19.1
-django-tailwind==4.0.1
-django-browser-reload==1.18.0

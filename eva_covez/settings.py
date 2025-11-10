@@ -1,17 +1,14 @@
 from pathlib import Path
 import os
 
-# Build paths inside the project like this: BASE_DIR / 'subdir'.
 BASE_DIR = Path(__file__).resolve().parent.parent
 
 DEBUG = os.getenv("DJANGO_DEBUG") == "True"
 SECRET_KEY = os.getenv("DJANGO_SECRET_KEY")
 ALLOWED_HOSTS = os.getenv("DJANGO_ALLOWED_HOSTS", "").split(",")
 
-# CSRF trusted origins from env
 CSRF_TRUSTED_ORIGINS = os.getenv("DJANGO_CSRF_TRUSTED_ORIGINS", "").split(",")
 
-# Security flags from env
 SECURE_SSL_REDIRECT = os.getenv("DJANGO_SECURE_SSL_REDIRECT") == "True"
 SESSION_COOKIE_SECURE = os.getenv("DJANGO_SESSION_COOKIE_SECURE") == "True"
 CSRF_COOKIE_SECURE = os.getenv("DJANGO_CSRF_COOKIE_SECURE") == "True"
@@ -25,13 +22,16 @@ INSTALLED_APPS = [
     "django.contrib.messages",
     "django.contrib.staticfiles",
     "theme",
-    "tailwind",
     "blog",
     "core",
 ]
 
+# Only dev apps
 if DEBUG:
-    INSTALLED_APPS.append("django_browser_reload")
+    INSTALLED_APPS += [
+        "tailwind",
+        "django_browser_reload",
+    ]
 
 TAILWIND_APP_NAME = "theme"
 
@@ -69,7 +69,6 @@ TEMPLATES = [
 
 WSGI_APPLICATION = "eva_covez.wsgi.application"
 
-# Database
 DATABASES = {
     "default": {
         "ENGINE": os.getenv("DJANGO_DB_ENGINE", "django.db.backends.sqlite3"),
@@ -77,7 +76,6 @@ DATABASES = {
     }
 }
 
-# Password validation
 AUTH_PASSWORD_VALIDATORS = [
     {
         "NAME": "django.contrib.auth.password_validation.UserAttributeSimilarityValidator"
@@ -87,13 +85,11 @@ AUTH_PASSWORD_VALIDATORS = [
     {"NAME": "django.contrib.auth.password_validation.NumericPasswordValidator"},
 ]
 
-# Internationalization
 LANGUAGE_CODE = "en-us"
 TIME_ZONE = "UTC"
 USE_I18N = True
 USE_TZ = True
 
-# Static files
 STATIC_URL = "/static/"
 STATICFILES_DIRS = [BASE_DIR / "static"]
 
