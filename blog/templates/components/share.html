@@ -1,24 +1,19 @@
 {% load static %}
 <span class="font-bold">Compártelo!</span>
 <div class="flex gap-4 mt-4">
-    <a href="">
-        <div class="size-10 p-2 border border-white rounded-full flex items-center justify-center cursor-pointer">
-            <img class="w-full h-full object-contain" src="{% static 'src/icons/x-logo.svg' %}" alt="X">
-        </div>
+    <a href="https://twitter.com/intent/tweet?url={{ post_url }}&text={{ post.title|urlencode }}" target="_blank" class="size-10 p-2 border border-white rounded-full flex items-center justify-center cursor-pointer">
+        <img class="w-full h-full object-contain" src="{% static 'src/icons/x-logo.svg' %}" alt="X">
     </a>
-    <a href="">
-        <div class="size-10 p-2 border border-white rounded-full flex items-center justify-center cursor-pointer">
-            <img class="w-full h-full object-contain" src="{% static 'src/icons/linkedin-logo.svg' %}" alt="LinkedIn">
-        </div>
+    
+    <a href="https://www.linkedin.com/sharing/share-offsite/?url={{ post_url }}" target="_blank" class="size-10 p-2 border border-white rounded-full flex items-center justify-center cursor-pointer">
+        <img class="w-full h-full object-contain" src="{% static 'src/icons/linkedin-logo.svg' %}" alt="LinkedIn">
     </a>
-    <a href="">
-        <div class="size-10 p-2 border border-white rounded-full flex items-center justify-center cursor-pointer">
-            <img class="w-full h-full object-contain" src="{% static 'src/icons/facebook-logo.svg' %}" alt="Facebook">
-        </div>
+    
+    <a href="https://www.facebook.com/sharer/sharer.php?u={{ post_url }}" target="_blank" class="size-10 p-2 border border-white rounded-full flex items-center justify-center cursor-pointer">
+        <img class="w-full h-full object-contain" src="{% static 'src/icons/facebook-logo.svg' %}" alt="Facebook">
     </a>
-    <a href="">
-        <div class="size-10 p-2 border border-white rounded-full flex items-center justify-center cursor-pointer">
-            <img class="w-full h-full object-contain" src="{% static 'src/icons/instagram-logo.svg' %}" alt="Instagram">
-        </div>
+    
+    <a href="https://api.whatsapp.com/send?text={{ post.title|urlencode }}%20{{ post_url }}" target="_blank" class="size-10 p-2 border border-white rounded-full flex items-center justify-center cursor-pointer">
+        <img class="w-full h-full object-contain" src="{% static 'src/icons/whatsapp-logo.svg' %}" alt="WhatsApp">
     </a>
 </div>

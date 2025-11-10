@@ -1,0 +1,31 @@
+{% if experiences %}
+  <div class="container space-y-8">
+        <h5 class="text-xl font-bold">Experiencia</h5>
+        <div class="md:flex flex-row">
+            <div class="relative border-l-2 border-deep max-w-lg ">
+              {% for experience in experiences %}
+                <div class="mb-10 ml-6">
+                  <div class="absolute w-4 h-4 bg-accent rounded-full -left-2 border-3 border-deep"></div>
+                  <div class="bg-background p-4 rounded-lg drop-shadow-2xl">
+                    <h3 class="font-semibold">{{ experience.role }}</h3>
+                    <p class="text-xs">{{ experience.company }}</p>
+                    <p class="text-xs text-accent">
+                      {{ experience.start_date|date:"F Y" }} -
+                      {% if experience.end_date %}
+                        {{ experience.end_date|date:"F Y" }}
+                      {% else %}
+                        Presente
+                      {% endif %}
+                    </p>
+                    <p class="mt-2 text-sm text-muted">
+                      {{ experience.description }}
+                    </p>
+                  </div>
+                </div>
+              {% empty %}
+              {% endfor %}
+              {% include 'components/skills.html' %}
+        </div>
+    </div>
+{% else %}
+{% endif %}

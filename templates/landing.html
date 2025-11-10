@@ -1,0 +1,33 @@
+{% extends 'base.html' %}
+{% load static %}
+{% block content %}
+    <div class="landing-background">
+        <div class="overlay"></div>
+        <div class="container">
+            <div class="content h-full flex flex-col gap-4 justify-end items-center text-center px-4 text-white md:text-start md:items-start">
+                <h1 class="text-3xl md:text-5xl">
+                    Gestión de Proyectos con enfoque humano y estratégico
+                </h1>
+                <p>
+                    Soy Eva Estévez, Ingeniera Electrónica y Especialista en Gestión de Proyectos. Aquí comparto ideas, experiencias y recursos para liderar proyectos con éxito.
+                </p>
+                <div class="flex gap-4">
+                    <a href="{% url 'blog' %}">
+                        {% include 'components/secondary-button.html' with button_text='Blog' button_classes='md:text-xl' %}
+                    </a>
+                    <a href="{% url 'contact' %}">
+                        {% include 'components/primary-button.html' with button_text='Contáctame' button_classes='md:text-xl' %}
+                    </a>
+                </div>
+            </div>
+        </div>
+        <img src="{% static 'images/frente-camara.jpeg' %}" alt="">
+    </div>
+    <div class="hidden bg-primary p-2 text-xs font-bold justify-center gap-8 md:flex">
+        <p>10+ Años de Experiencia</p>
+        <p>PMP Certified</p>
+        <p>Máster en Alta Gerencia</p>
+    </div>
+    {% include 'components/posts.html' %}
+    {% include 'components/about.html' %}
+{% endblock %}

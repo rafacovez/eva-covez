@@ -18,14 +18,15 @@
     <meta property="type" content="website" />
     <meta property="url" content="https://eva.covez.net" />
     <meta property="image" content="{% static 'logo.png' %}" />
-
-    <link rel="icon" href="{% static 'favicon.ico' %}" type="image/x-icon" />
-    <link rel="stylesheet" href="{% static 'dist/style.css' %}" />
+    
+    <!-- Favicon / App Icons -->
+    <link rel="apple-touch-icon" sizes="180x180" href="{% static 'favicon/apple-touch-icon.png' %}">
+    <link rel="icon" type="image/png" sizes="32x32" href="{% static 'favicon/favicon-32x32.png' %}">
+    <link rel="icon" type="image/png" sizes="16x16" href="{% static 'favicon/favicon-16x16.png' %}">
+    
     {% tailwind_css %}
-
-    <!--TODO: add compatible favicon for all browsers-->
   </head>
-  <body class="min-h-screen flex flex-col">
+  <body class="bg-background text-white flex flex-col min-h-full">
     {% include 'components/header.html' %}
 
     <main class="flex-1">{% block content %}{% endblock %}</main>

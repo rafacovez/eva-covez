@@ -1,29 +1,27 @@
 {% load static %}
-<div class="bg-background text-white">
-    <article class="container space-y-8">
-        <h1 class="text-5xl">Lorem ipsum dolor sit.</h1>
-        <div class="flex gap-4">
-            <img class="object-cover object-center size-16 shrink-0 rounded-full" src="{% static 'images/sentada-laptop.jpeg' %}" alt="">
+<article class="container space-y-8">
+        <h1 class="text-5xl">{{ post.title }}</h1>
+        <div class="flex items-center gap-4">
+            {% if post.author.avatar %}
+                <img class="object-cover object-center size-16 shrink-0 rounded-full" src="{{ post.author.avatar.url }}" alt="{{ post.author.full_name }}">
+            {% else %}
+                <span class="bg-deep text-muted text-xl rounded-full size-16 flex items-center justify-center">{{ post.author.initials }}</span>
+            {% endif %}
             <div class="text-xs flex flex-col">
-                <span class="font-bold">Eva Estévez</span>
-                <span>Ingeniera Electrónica y de Comunicaciones | Especialista en Gestión de Proyectos</span>
-                <time class="text-muted">12 de junio del 2024</time>
+                <span class="font-bold">{{ post.author.full_name }}</span>
+                <span>{{ post.author.profession }}</span>
+                <time class="text-muted">{{ post.published_at|date:"j \\d\\e F \\d\\e\\l Y" }}</time>
             </div>
         </div>
-        <img class="h-64 md:h-96 w-screen max-w-none -mx-8 md:w-full md:-mx-0 md:rounded object-cover object-center" src="{% static 'images/frente-camara.jpeg' %}" alt="">
+        {% if post.cover_image %}
+            <img class="h-64 md:h-96 w-screen max-w-none -mx-8 md:w-full md:-mx-0 md:rounded object-cover object-center" src="{{ post.cover_image.url }}" alt="{{ post.title }}">
+        {% else %}
+        {% endif %}
+        
         <span class="divider"></span>
         <div class="text-justify space-y-8">
-            <p>
-                Lorem ipsum dolor sit amet consectetur adipisicing elit. Voluptatibus suscipit reprehenderit expedita at sed nulla doloribus rem, sapiente laudantium velit aliquam earum nihil minima, tenetur omnis ipsum dolor, rerum praesentium.
-            </p>
-            <p>
-                Lorem ipsum dolor sit amet consectetur adipisicing elit. Voluptatibus suscipit reprehenderit expedita at sed nulla doloribus rem, sapiente laudantium velit aliquam earum nihil minima, tenetur omnis ipsum dolor, rerum praesentium.
-            </p>
-            <p>
-                Lorem ipsum dolor sit amet consectetur adipisicing elit. Voluptatibus suscipit reprehenderit expedita at sed nulla doloribus rem, sapiente laudantium velit aliquam earum nihil minima, tenetur omnis ipsum dolor, rerum praesentium.
-            </p>
+            <p>{{ post.content }}</p>
         </div>
         <span class="divider"></span>
         {% include 'components/share.html' %}
     </article>
-</div>

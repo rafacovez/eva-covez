@@ -1,0 +1,19 @@
+{% load static %}
+{% if testimonies %}
+    <div class="container space-y-8">
+        <h5 class="text-xl font-bold">Testimonios</h5>
+        <div class="lg:grid lg:grid-cols-2 lg:gap-4">
+            {% for testimony in testimonies %}
+                <div class="flex flex-col items-center">
+                    <div class="relative size-64 rounded-full overflow-hidden">
+                        <img class="object-cover object-center w-full h-full" src="{{ testimony.avatar.url }}" alt="">
+                    <div class="absolute inset-0 bg-gradient-to-t from-black to-transparent opacity-60"></div>
+                    </div>
+                    <p class="text-3xl text-center -translate-y-12 md:text-4xl">"{{ testimony.message }}"</p>
+                    <span class="text-xs text-muted -translate-y-6">{{ testimony.author }} — {{ testimony.profession }}</span>
+                </div>
+            {% endfor %}
+        </div>
+    </div>
+{% else %}
+{% endif %}
